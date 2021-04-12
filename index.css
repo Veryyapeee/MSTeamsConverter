@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.firstFile,
+.secondFile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+.firstFile label,
+.secondFile label {
+  font-size: 1.1em;
+}
+
+#button {
+  width: 15%;
+}
