@@ -50,7 +50,6 @@ document.getElementById('button').addEventListener("click", () => {
                         let currentDate = dataList[0]['Znacznik czasu'].split(',')[0];
                         weList.filter(data=> String(data.NR_ALB).trim() !== '').forEach((singleUser)=>{
                             let obecny = absent.includes(singleUser.NR_ALB) ? 0 : 1;
-                            finishData.push({LP: singleUser.LP, NR_ALB: singleUser.NR_ALB, ['NAZWISKO, imię']: singleUser['NAZWISKO, Imię'], [currentDate]: obecny});
                             finishData.push({
                                 ...singleUser,
                                [currentDate]: obecny
