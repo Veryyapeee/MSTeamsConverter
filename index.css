@@ -19,3 +19,12 @@
 #button {
   width: 15%;
 }
+
+#errorMessage {
+  color: red;
+  font-weight: 600;
+}
+#successMessage {
+  color: green;
+  font-weight: 600;
+}

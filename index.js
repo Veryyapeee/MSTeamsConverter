@@ -31,6 +31,12 @@ document.getElementById('button').addEventListener("click", () => {
                  workbook.SheetNames.forEach(sheet => {
                     //Convert weList to json object
                       let dataList = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
+
+                      if(!weList.LP || !weList.NR_ALB || !weList['NAZWISKO, Imię'] || !data['Imię i nazwisko'] || !data['Akcja użytkownika'] || !data['Znacznik czasu']){
+                            document.querySelector('#errorMessage').innerHTML = 'Błędny format danych';
+                            document.querySelector('#successMessage').innerHTML = '';
+                        }
+
                       //Present indexes
                       const regExp = /\(([^)]+)\)/;
                       const presentIndexes = dataList.map((user)=>parseInt(regExp.exec(user['Imię i nazwisko'])[1],10));
@@ -56,12 +62,15 @@ document.getElementById('button').addEventListener("click", () => {
                             })
                         })
                         downloadAsExcel(finishData);
+                        document.querySelector('#errorMessage').innerHTML = '';
+                        document.querySelector('#successMessage').innerHTML = 'Dane przekonwertowane pomyślnie';
                  });
                 }
             });
         }
     }else{
-        console.log('no files');
+        document.querySelector('#successMessage').innerHTML = '';
+       document.querySelector('#errorMessage').innerHTML = 'Upewnij się, że dodałeś wymagane pliki';
     }
 });
 
