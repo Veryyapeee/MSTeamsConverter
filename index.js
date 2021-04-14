@@ -55,10 +55,15 @@ document.getElementById('button').addEventListener("click", () => {
                         let finishData = [];
                         let currentDate = dataList[0]['Znacznik czasu'].split(',')[0];
                         weList.filter(data=> String(data.NR_ALB).trim() !== '').forEach((singleUser)=>{
-                            let obecny = absent.includes(singleUser.NR_ALB) ? 0 : 1;
+                            let isPresent = absent.includes(singleUser.NR_ALB) ? 0 : 1;
+                            //Copy of the main object and adding sum
+                            const sum = singleUser['Suma'] ? singleUser['Suma'] + isPresent : isPresent;
+                            const copy = {...singleUser};
+                            delete copy['Suma'];
                             finishData.push({
-                                ...singleUser,
-                               [currentDate]: obecny
+                                ...copy,
+                               [currentDate]: isPresent,
+                               ['Suma']: sum,
                             })
                         })
                         downloadAsExcel(finishData);
