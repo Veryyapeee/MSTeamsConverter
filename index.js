@@ -1,5 +1,4 @@
 let selectedFile;
-console.log(window.XLSX);
 document.getElementById("input-list").addEventListener("change", (event) => {
   selectedFile = event.target.files[0];
 });
@@ -119,11 +118,12 @@ const EXCEL_EXTENSION = ".xlsx";
 
 const downloadAsExcel = (data) => {
   const worksheet = XLSX.utils.json_to_sheet(data);
+  worksheet["!cols"] = [{ wpx: 50 }, { wpx: 60 }, { wpx: 150 }];
   const workbook = {
     Sheets: {
-      data: worksheet,
+      ["Lista"]: worksheet,
     },
-    SheetNames: ["data"],
+    SheetNames: ["Lista"],
   };
   const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
   saveAsExcel(excelBuffer);
